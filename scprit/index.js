@@ -45,7 +45,7 @@ const displayAllCard=(allCard)=>{
                             <p onclick="loadTreeDetails(${plant.id})" class="font-semibold">${plant.name}</p>
                             <p class=" font-light text-gray-900 text-xs h-20">${plant.description}</p>
                             <div class="flex justify-between">
-                                    <p class="bg-[#DCFCE7] rounded-lg text-[#15803D] text-[0.9rem] w-1/3">${plant.category}</p>
+                                    <div class="badge badge-success bg-[#DCFCE7] border-0">${plant.category}</div>
                                 <p class="font-bold">৳<span id="t_price">${plant.price}</span></p>
                             </div>
                                 <div class="flex justify-center items-center">
@@ -185,11 +185,11 @@ const displayCard=(allData)=>{
                             <p onclick="loadTreeDetails(${plant.id})" class="font-semibold">${plant.name}</p>
                             <p class=" font-light text-gray-900 text-xs h-20 ">${plant.description}</p>
                             <div class="flex justify-between">
-                                    <p class="bg-[#DCFCE7] rounded-lg text-[#15803D] text-[0.9rem] w-1/3">${plant.category}</p>
+                                     <div class="badge badge-success bg-[#DCFCE7] border-0">${plant.category}</div>
                                 <p class="font-bold">৳${plant.price}</p>
                             </div>
                                 <div class="flex justify-center items-center">
-                             <button onclick="loadAddCard(${plant.id})" class="btn btn-active btn-secondary text-center bg-[#15803D] rounded-xl text-white border-0 w-full">Add to Cart</button>
+                             <button onclick="loadAddCard(${plant.id}); alert('${plant.name} added to cart!')" class="btn btn-active btn-secondary text-center bg-[#15803D] rounded-xl text-white border-0 w-full">Add to Cart</button>
                                 </div>
                         </div>
         `;
