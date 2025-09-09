@@ -1,4 +1,8 @@
+let all_price=[];
+let all_card=[];
+
 // Category load and display
+
 const loadCategories=()=>{
     fetch("https://openapi.programming-hero.com/api/categories")
     .then((res) => res.json())
@@ -42,10 +46,10 @@ const displayAllCard=(allCard)=>{
                             <p class=" font-light text-gray-900 text-xs h-20">${plant.description}</p>
                             <div class="flex justify-between">
                                     <p class="bg-[#DCFCE7] rounded-lg text-[#15803D] text-[0.9rem] w-1/3">${plant.category}</p>
-                                <p class="font-bold">৳${plant.price}</p>
+                                <p class="font-bold">৳<span id="t_price">${plant.price}</span></p>
                             </div>
                                 <div class="flex justify-center items-center">
-                             <button class="btn btn-active btn-secondary text-center bg-[#15803D] rounded-xl text-white border-0 w-full">Add to Cart</button>
+                             <button onclick="loadAddCard(${plant.id})" class="btn btn-active btn-secondary text-center bg-[#15803D] rounded-xl text-white border-0 w-full">Add to Cart</button>
                                 </div>
                         </div>
         `;
@@ -62,6 +66,89 @@ const removeActive=() =>{
     // console.log(btn)
     btn.forEach(btn=> btn.classList.remove("active"))
 }
+
+// Load Add card
+const loadAddCard=(id) =>{
+    // console.log(id)
+    const url=`https://openapi.programming-hero.com/api/plant/${id}`
+    // console.log(url)
+    fetch(url)
+    .then((res)=>res.json())
+    .then((tree_data)=>displayAddCard(tree_data.plants))
+}
+
+const displayAddCard=(t_data)=>{
+    // console.log(t_data)
+    let price=parseInt(t_data.price);
+    all_price.push(price)
+    all_card.push(t_data)
+    // console.log(total_price)
+    // console.log(all_card)
+    const cart_Container = document.getElementById("cart-container");
+    cart_Container.innerHTML= "";
+    for(let i=0;i<all_card.length;i++){
+        // console.log(all_card[i])
+
+        const cart = document.createElement("div");
+        cart.innerHTML=`
+         <div class="flex justify-between my-2 bg-[#F0FDF4] p-1 rounded-lg">
+                            <div>
+                                <p class="font-semibold">${all_card[i].name}</p>
+                                <p class="font-normal text-gray-500">৳${all_card[i].price} x 1</p>
+                            </div>
+                            <button onclick="deleteCart(${all_card[i].id})" class="btn btn-ghost"><i class="fa-solid fa-xmark text-red-500"></i></button>
+                            </div>
+        `;
+        cart_Container.append(cart);
+
+    }
+    let total_Price=0;
+    for(let i=0;i<all_card.length;i++){
+        total_Price+=all_card[i].price;
+        // console.log(total_Price)
+    }
+    const t_price_container=document.getElementById("totalPrice-container");
+    t_price_container.innerHTML=`  <p>Total:</p>
+                            <p>৳<span>${total_Price}</span></p>`
+    // console.log(all_price)
+
+}
+ // Delete func
+const deleteCart=(id)=>{
+        //fruits = fruits.filter(fruit => fruit.id !== 3);
+        // console.log("Hellow I'm Delete button",id)
+        all_card=all_card.filter(all_card=>all_card.id !=id)
+        // console.log(id)
+        const cart_Container = document.getElementById("cart-container");
+    cart_Container.innerHTML= "";
+    for(let i=0;i<all_card.length;i++){
+        // console.log(all_card[i])
+
+        const cart = document.createElement("div");
+        cart.innerHTML=`
+         <div class="flex justify-between my-2 bg-[#F0FDF4] p-1 rounded-lg">
+                            <div>
+                                <p class="font-semibold">${all_card[i].name}</p>
+                                <p class="font-normal text-gray-500">৳${all_card[i].price} x 1</p>
+                            </div>
+                            <button onclick="deleteCart(${all_card[i].id})" class="btn btn-ghost"><i class="fa-solid fa-xmark text-red-500"></i></button>
+                            </div>
+        `;
+        cart_Container.append(cart);
+
+    }
+    let total_Price=0;
+    for(let i=0;i<all_card.length;i++){
+        total_Price+=all_card[i].price;
+        // console.log(total_Price)
+    }
+    const t_price_container=document.getElementById("totalPrice-container");
+    t_price_container.innerHTML=`  <p>Total:</p>
+                            <p>৳<span>${total_Price}</span></p>`
+    // console.log(all_price)
+
+
+    }
 
 // Card
 
@@ -102,7 +189,7 @@ const displayCard=(allData)=>{
                                 <p class="font-bold">৳${plant.price}</p>
                             </div>
                                 <div class="flex justify-center items-center">
-                             <button class="btn btn-active btn-secondary text-center bg-[#15803D] rounded-xl text-white border-0 w-full">Add to Cart</button>
+                             <button onclick="loadAddCard(${plant.id})" class="btn btn-active btn-secondary text-center bg-[#15803D] rounded-xl text-white border-0 w-full">Add to Cart</button>
                                 </div>
                         </div>
         `;
@@ -159,3 +246,5 @@ const manageSpinner = (status) => {
 
 loadCategories();
 loadAllCard();
+
+
