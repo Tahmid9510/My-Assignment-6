@@ -30,7 +30,7 @@ Destructuring assignment in ES6 is a JavaScript expression that allows for the u
                                                                    
 #### 5) Explain template literals in ES6. How are they different from string concatenation?
 
-Template literals in ES6 are a new way to work with strings, written using backticks (``) instead of quotes. They allow you to insert variables or expressions directly inside a string using ${...}. You can also write multi-line strings easily without adding \n.
+Template literals in ES6 are a new way to work with strings, written using backticks (``) instead of quotes. They allow us to insert variables or expressions directly inside a string using ${...}. We can also write multi-line strings easily without adding \n.
 
-They are different from normal string concatenation because, with concatenation, you join strings and variables using the + operator, which can be messy. Template literals make the code cleaner, more readable, and flexible.
+They are different from normal string concatenation because, with concatenation, we join strings and variables using the + operator, which can be messy. Template literals make the code cleaner, more readable, and flexible.
 
