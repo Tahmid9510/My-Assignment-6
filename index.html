@@ -75,6 +75,7 @@ generations.</p>
          <Section>
             <div class="my-10 space-y-4">
                 <h1 class="text-center font-semibold text-2xl">Choose Your Trees</h1>
+                <div id="spinner" class="flex justify-center items-center hidden"><span class="loading loading-spinner text-success loading-xl"></span></div>
                 <div class="px-12 md:flex md:gap-3">
                     <div  class=" md:w-[17%] space-y-3">
                         <p class="font-medium text-xl text-center">Categories</p>
@@ -84,6 +85,7 @@ generations.</p>
                         </div>
                     
                     <div id="card-container" class="middle-container md:w-[66%] grid md:grid-cols-3 gap-3 grid-cols-1">
+                        
                         <!-- card here -->
                     </div>
                     <div class="right-container bg-white md:w-[17%]">
@@ -168,8 +170,6 @@ generations.</p>
             </section>
 
 <!-- Open the modal using ID.showModal() method -->
-
- <!-- <button class="btn" onclick="my_modal_5.showModal()">open modal</button> -->
 
 <dialog id="tree_modal" class="modal modal-bottom sm:modal-middle">
   <div class="modal-box">
