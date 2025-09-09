@@ -37,7 +37,7 @@ const displayAllCard=(allCard)=>{
         card.innerHTML=`
         <div class="w-[280px] h-full rounded-lg p-4 bg-white space-y-3">
                             <img class="rounded-lg size-60 w-full" src="${plant.image}" alt="">
-                            <p class="font-semibold">${plant.name}</p>
+                            <p onclick="loadTreeDetails(${plant.id})" class="font-semibold">${plant.name}</p>
                             <p class=" font-light text-gray-900 text-xs h-20">${plant.description}</p>
                             <div class="flex justify-between">
                                     <p class="bg-[#DCFCE7] rounded-lg text-[#15803D] text-[0.9rem] w-1/3">${plant.category}</p>
@@ -91,7 +91,7 @@ const displayCard=(allData)=>{
         card.innerHTML=`
         <div class="w-[280px] h-full rounded-lg p-4 bg-white space-y-3">
                             <img class="rounded-lg size-60 w-full" src="${plant.image}" alt="">
-                            <p class="font-semibold">${plant.name}</p>
+                            <p onclick="loadTreeDetails(${plant.id})" class="font-semibold">${plant.name}</p>
                             <p class=" font-light text-gray-900 text-xs h-20 ">${plant.description}</p>
                             <div class="flex justify-between">
                                     <p class="bg-[#DCFCE7] rounded-lg text-[#15803D] text-[0.9rem] w-1/3">${plant.category}</p>
@@ -107,6 +107,34 @@ const displayCard=(allData)=>{
     });
 
 }
+
+// Load and Display Tree details
+
+const loadTreeDetails=(id)=>{
+    const url =`https://openapi.programming-hero.com/api/plant/${id}`
+    fetch(url)
+    .then((res)=>res.json())
+    .then((details)=>displayTreeDetails(details.
+plants
+))
+
+}
+const displayTreeDetails=(treeDetails)=>{
+    // console.log(treeDetails);
+    const treeDetails_box=document.getElementById("treeDetails-container");
+    treeDetails_box.innerHTML=`
+    <div class="space-y-2">
+    <p class="font-semibold">${treeDetails.name}</p>
+    <img class="rounded-lg size-60 w-full" src="${treeDetails.image}" alt="">
+    <p class="font-normal"><span class="font-semibold">Category:</span>${treeDetails.category}</p>
+    <p class="font-normal"><span class="font-semibold">Price:</span> ${treeDetails.price}</p>
+    <p class="font-normal"><span class="font-semibold">Description:</span> ${treeDetails.description}</p>
+    </div>    
+    `;
+    document.getElementById("tree_modal").showModal();
+
+
+};
 
 
 
