@@ -49,7 +49,7 @@ const displayAllCard=(allCard)=>{
                                 <p class="font-bold">৳<span id="t_price">${plant.price}</span></p>
                             </div>
                                 <div class="flex justify-center items-center">
-                             <button onclick="loadAddCard(${plant.id})" class="btn btn-active btn-secondary text-center bg-[#15803D] rounded-xl text-white border-0 w-full">Add to Cart</button>
+                             <button onclick="loadAddCard(${plant.id}); alert('${plant.name} added to cart!')" class="btn btn-active btn-secondary text-center bg-[#15803D] rounded-xl text-white border-0 w-full">Add to Cart</button>
                                 </div>
                         </div>
         `;
