@@ -13,13 +13,14 @@ const displayCategory = (allCategory) =>{
         const categories_Div =document.createElement("div")
         categories_Div.innerHTML=`
         <div class=" ">
-         <button onclick="loadCard(${categories.id})" class="btn btn-ghost font-normal w-full">${categories.category_name}</button>
+         <button id="category-btn-${categories.id}" onclick="loadCard(${categories.id})" class="btn btn-ghost font-normal w-full category-btn">${categories.category_name}</button>
          </div>
         `;
         categories_Container.append(categories_Div);
     }
 
 }
+
 //  load and display all card
 const loadAllCard=()=>{
     fetch("https://openapi.programming-hero.com/api/plants")
@@ -31,7 +32,7 @@ const displayAllCard=(allCard)=>{
     cardContainer.innerHTML= "";
 
     allCard.forEach(plant => {
-        console.log(plant)
+        // console.log(plant)
         const card = document.createElement("div");
         card.innerHTML=`
         <div class="w-[280px] h-full rounded-lg p-4 bg-white space-y-3">
@@ -52,7 +53,12 @@ const displayAllCard=(allCard)=>{
     });
 }
 
-
+// Active status remove
+const removeActive=() =>{
+    const btn = document.querySelectorAll(".category-btn")
+    // console.log(btn)
+    btn.forEach(btn=> btn.classList.remove("active"))
+}
 
 // Card
 
@@ -62,7 +68,16 @@ const loadCard=(id) =>{
     // console.log(url)
     fetch(url)
     .then((res)=>res.json())
-    .then((allData)=>displayCard(allData.plants))
+    .then((allData)=>{
+        removeActive();
+
+        const click_category_btn = document.getElementById(`category-btn-${id}`)
+        // console.log(click_category_btn)
+        click_category_btn.classList.add("active");
+
+        displayCard(allData.plants)
+        
+    })
 
 }
 const displayCard=(allData)=>{
