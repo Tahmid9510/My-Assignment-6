@@ -40,7 +40,7 @@ const displayAllCard=(allCard)=>{
         // console.log(plant)
         const card = document.createElement("div");
         card.innerHTML=`
-        <div class="w-[280px] h-full rounded-lg p-4 bg-white space-y-3">
+        <div class="w-[280px] h-full rounded-lg p-4 bg-white space-y-3 ">
                             <img class="rounded-lg size-60 w-full" src="${plant.image}" alt="">
                             <p onclick="loadTreeDetails(${plant.id})" class="font-semibold">${plant.name}</p>
                             <p class=" font-light text-gray-900 text-xs h-20">${plant.description}</p>
